@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Banner from './banner'
-import Galery from './galery/gallery'
+import Galery from './gallery/gallery'
 import { Foto } from '../../App'
 
 const StyledBody = styled.div`
@@ -11,16 +11,17 @@ const StyledBody = styled.div`
 
 interface BodyProps {
     fotos: Foto[]
+    setFoto: (foto: Foto) => void
 }
 
-export default function Body({ fotos }: BodyProps){
+export default function Body({ fotos, setFoto }: BodyProps){
     return(
         <StyledBody>
             <Banner 
             text='A galeria mais completa de fotos do espaço!'
             backgroundImage='images/Banner.png'
             />
-            <Galery fotos={fotos}/>
+            <Galery fotos={fotos} setFoto={setFoto}/>
         </StyledBody>
     )
 }

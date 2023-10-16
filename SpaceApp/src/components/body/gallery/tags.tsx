@@ -33,7 +33,7 @@ const StyledTag = styled.button`
     background: rgba(217, 217, 217, 0.3);
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: border-color 0.3s ease;
     padding: 8px;
     box-sizing: border-box;
     border: 2px solid transparent;

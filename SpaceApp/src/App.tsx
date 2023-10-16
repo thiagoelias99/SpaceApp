@@ -6,6 +6,7 @@ import Body from './components/body'
 
 import fotosJson from './fotos.json'
 import { useState } from 'react'
+import ModalZoom from './components/ModalZoom'
 
 export interface Foto {
   titulo: string
@@ -35,6 +36,7 @@ const MainContainer = styled.div`
 function App() {
 
   const [fotos, setFotos] = useState<Foto[]>(fotosJson ?? [])
+  const [foto, setFoto] = useState<Foto | undefined>(undefined)
 
   return (
     <GradientBackground>
@@ -43,9 +45,10 @@ function App() {
         <Header />
         <MainContainer>
           <SideBar />
-          <Body fotos={fotos}/>
+          <Body fotos={fotos} setFoto={setFoto}/>
         </MainContainer>
       </AppContainer>
+      <ModalZoom foto={foto} setFoto={setFoto}/>
     </GradientBackground>
   )
 }
