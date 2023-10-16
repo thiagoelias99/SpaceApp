@@ -12,14 +12,15 @@ const GalleryContainer = styled.div`
 interface GaleryProps {
     fotos: Foto[]
     setFoto: (foto: Foto) => void
+    setFavorita: (id: string) => void
 }
 
-export default function Galery({ fotos, setFoto }: GaleryProps) {
+export default function Galery({ fotos, setFoto, setFavorita }: GaleryProps) {
     return (
         <div>
             <Tags />
             <GalleryContainer>
-                <MainGallery fotos={fotos} setFoto={setFoto}/>
+                <MainGallery fotos={fotos} setFoto={setFoto} setFavorita={setFavorita}/>
                 <PopularGallery/>
             </GalleryContainer>
         </div>

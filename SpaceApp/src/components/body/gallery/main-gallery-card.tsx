@@ -4,6 +4,7 @@ import { Foto } from '../../../App'
 interface MainGalleryCardProps {
     foto: Foto
     setFoto: (foto: Foto) => void
+    setFavorita: (id: string) => void
 }
 
 const StyledFigure = styled.figure`
@@ -74,7 +75,7 @@ const StyledImgButton = styled.img`
 `
 
 
-export default function MainGalleryCard({ foto, setFoto }: MainGalleryCardProps) {
+export default function MainGalleryCard({ foto, setFoto, setFavorita }: MainGalleryCardProps) {
     return (
         <StyledFigure>
             <StyledImg src={foto.path} />
@@ -84,11 +85,11 @@ export default function MainGalleryCard({ foto, setFoto }: MainGalleryCardProps)
                     <StyledP>{foto.fonte}</StyledP>
                 </CaptionContainer>
                 <div>
-                    <StyledButton>
-                        <StyledImgButton src="/images/favorite.svg" alt="favorite" />
+                    <StyledButton onClick={e => setFavorita(foto.id)}>
+                        <StyledImgButton src={foto.favorita ? "/images/favorito-ativo.png" : "/images/favorito.png"} alt="favorite" />
                     </StyledButton>
                     <StyledButton onClick={e => setFoto(foto)}>
-                        <StyledImgButton src="/images/open-in-full.svg" alt="favorite" />
+                        <StyledImgButton src="/images/expandir.png" alt="favorite" />
                     </StyledButton>
                 </div>
             </StyledFigcaption>

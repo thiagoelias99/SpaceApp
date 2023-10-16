@@ -4,6 +4,7 @@ import { Foto } from "../App"
 interface ModalZoomProps {
     foto?: Foto
     setFoto: (foto?: Foto) => void
+    setFavorita: (id: string) => void
 }
 
 const Overlay = styled.div`
@@ -97,7 +98,7 @@ const StyledCloseButton = styled.button`
 `
 
 
-export default function ModalZoom({ foto, setFoto }: ModalZoomProps) {
+export default function ModalZoom({ foto, setFoto, setFavorita }: ModalZoomProps) {
     return (
         <>
             {foto && (
@@ -113,8 +114,8 @@ export default function ModalZoom({ foto, setFoto }: ModalZoomProps) {
                                     <StyledTitle>{foto.titulo}</StyledTitle>
                                     <StyledP>{foto.fonte}</StyledP>
                                 </CaptionContainer>
-                                <StyledButton>
-                                    <StyledImgButton src="/images/favorite.svg" alt="favorite" />
+                                <StyledButton onClick={e => setFavorita(foto.id)}>
+                                    <StyledImgButton src={foto.favorita ? "/images/favorito-ativo.png" : "/images/favorito.png"} alt="favorite" />
                                 </StyledButton>
                             </StyledFigcaption>
                         </StyledFigure>

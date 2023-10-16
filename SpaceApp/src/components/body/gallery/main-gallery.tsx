@@ -21,16 +21,17 @@ const CardContainer = styled.ul`
 interface MainGalleryProps {
     fotos: Foto[]
     setFoto: (foto: Foto) => void
+    setFavorita: (id: string) => void
 }
 
-export default function MainGallery({ fotos, setFoto }: MainGalleryProps) {
+export default function MainGallery({ fotos, setFoto, setFavorita }: MainGalleryProps) {
     return (
         <MainGalleryContainer>
             <Title title="Navegue pela Galeria" />
             <CardContainer>
                 {fotos.map(foto => {
                     return (
-                        <MainGalleryCard foto={foto} setFoto={setFoto}/>
+                        <MainGalleryCard foto={foto} setFoto={setFoto} setFavorita={setFavorita}/>
                     )
                 })}
             </CardContainer>

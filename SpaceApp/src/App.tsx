@@ -14,6 +14,7 @@ export interface Foto {
   path: string
   id: string
   tagId: number
+  favorita?: boolean
 }
 
 const GradientBackground = styled.div`
@@ -38,6 +39,14 @@ function App() {
   const [fotos, setFotos] = useState<Foto[]>(fotosJson ?? [])
   const [foto, setFoto] = useState<Foto | undefined>(undefined)
 
+  function setFavorita(id: string) {
+    const foto = fotos.find(foto => foto.id === id)
+    if (foto) {
+      foto.favorita = !foto.favorita
+      setFotos([...fotos])
+    }
+  }
+
   return (
     <GradientBackground>
       <GlobalStyles />
@@ -45,10 +54,10 @@ function App() {
         <Header />
         <MainContainer>
           <SideBar />
-          <Body fotos={fotos} setFoto={setFoto}/>
+          <Body fotos={fotos} setFoto={setFoto} setFavorita={setFavorita}/>
         </MainContainer>
       </AppContainer>
-      <ModalZoom foto={foto} setFoto={setFoto}/>
+      <ModalZoom foto={foto} setFoto={setFoto} setFavorita={setFavorita}/>
     </GradientBackground>
   )
 }
