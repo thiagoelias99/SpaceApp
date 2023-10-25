@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { Foto } from '../../../App'
 import Title from '../title'
 import MainGalleryCard from './main-gallery-card'
+import { fotos } from '../../../state/atom'
+import { useRecoilValue } from 'recoil'
 
 const MainGalleryContainer = styled.div`
     display: flex;
@@ -18,20 +19,16 @@ const CardContainer = styled.ul`
     gap: 16px;
 `
 
-interface MainGalleryProps {
-    fotos: Foto[]
-    setFoto: (foto: Foto) => void
-    setFavorita: (id: string) => void
-}
+export default function MainGallery() {
+    const fotosArray = useRecoilValue(fotos)
 
-export default function MainGallery({ fotos, setFoto, setFavorita }: MainGalleryProps) {
     return (
         <MainGalleryContainer>
             <Title title="Navegue pela Galeria" />
             <CardContainer>
-                {fotos.map(foto => {
+                {fotosArray.map(foto => {
                     return (
-                        <MainGalleryCard foto={foto} setFoto={setFoto} setFavorita={setFavorita}/>
+                        <MainGalleryCard foto={foto}/>
                     )
                 })}
             </CardContainer>

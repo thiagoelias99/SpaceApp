@@ -1,11 +1,8 @@
 import styled from "styled-components"
-import { Foto } from "../App"
-
-interface ModalZoomProps {
-    foto?: Foto
-    setFoto: (foto?: Foto) => void
-    setFavorita: (id: string) => void
-}
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { Foto } from "../model/Foto"
+import { foto2 } from '../state/atom'
+import useSetFavorite from '../hooks/useSetFavorite'
 
 const Overlay = styled.div`
     background-color: rgba(0, 0, 0, 0.7);
@@ -97,25 +94,29 @@ const StyledCloseButton = styled.button`
     cursor: pointer;
 `
 
+export default function ModalZoom() {
+    const foto3 = useRecoilValue(foto2)
+    const setFotoZoom = useSetRecoilState<Foto | undefined>(foto2)
+    const setFavorita = useSetFavorite()
+    function setFoto(foto?: Foto) { setFotoZoom(foto) }
 
-export default function ModalZoom({ foto, setFoto, setFavorita }: ModalZoomProps) {
     return (
         <>
-            {foto && (
+            {foto3 && (
                 <Overlay>
-                    <StyledDialog open={!!foto}>
+                    <StyledDialog open={!!foto3}>
                         <StyledFigure>
-                            <StyledImg src={foto.path} />
+                            <StyledImg src={foto3.path} />
                             <StyledCloseButton onClick={() => setFoto(undefined)}>
                                 <StyledImgButton src="/images/close.svg" alt="close" />
                             </StyledCloseButton>
                             <StyledFigcaption>
                                 <CaptionContainer>
-                                    <StyledTitle>{foto.titulo}</StyledTitle>
-                                    <StyledP>{foto.fonte}</StyledP>
+                                    <StyledTitle>{foto3.titulo}</StyledTitle>
+                                    <StyledP>{foto3.fonte}</StyledP>
                                 </CaptionContainer>
-                                <StyledButton onClick={e => setFavorita(foto.id)}>
-                                    <StyledImgButton src={foto.favorita ? "/images/favorito-ativo.png" : "/images/favorito.png"} alt="favorite" />
+                                <StyledButton onClick={e => setFavorita(foto3.id)}>
+                                    <StyledImgButton src={foto3.favorita ? "/images/favorito-ativo.png" : "/images/favorito.png"} alt="favorite" />
                                 </StyledButton>
                             </StyledFigcaption>
                         </StyledFigure>

@@ -1,27 +1,15 @@
 import styled from 'styled-components'
+import { RecoilRoot } from 'recoil'
 import { GlobalStyles } from './components/global-styles'
 import Header from './components/header'
 import SideBar from './components/side-bar'
 import Body from './components/body'
-
-import fotosJson from './fotos.json'
-import { useState } from 'react'
 import ModalZoom from './components/ModalZoom'
-
-export interface Foto {
-  titulo: string
-  fonte: string
-  path: string
-  id: string
-  tagId: number
-  favorita?: boolean
-}
 
 const GradientBackground = styled.div`
   background: linear-gradient(174.61deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
   width: 100%;
-  min-height: 100vh;
-`
+  min-height: 100vh;`
 
 const AppContainer = styled.div`
   width: 1440px;
@@ -35,30 +23,21 @@ const MainContainer = styled.div`
   `
 
 function App() {
-
-  const [fotos, setFotos] = useState<Foto[]>(fotosJson ?? [])
-  const [foto, setFoto] = useState<Foto | undefined>(undefined)
-
-  function setFavorita(id: string) {
-    const foto = fotos.find(foto => foto.id === id)
-    if (foto) {
-      foto.favorita = !foto.favorita
-      setFotos([...fotos])
-    }
-  }
-
   return (
-    <GradientBackground>
-      <GlobalStyles />
-      <AppContainer>
-        <Header />
-        <MainContainer>
-          <SideBar />
-          <Body fotos={fotos} setFoto={setFoto} setFavorita={setFavorita}/>
-        </MainContainer>
-      </AppContainer>
-      <ModalZoom foto={foto} setFoto={setFoto} setFavorita={setFavorita}/>
-    </GradientBackground>
+    <RecoilRoot>
+      <GradientBackground>
+        <GlobalStyles />
+        <AppContainer>
+          <Header />
+          <MainContainer>
+            <SideBar />
+            <Body />
+            {/* <Body fotos={fotos} setFoto={setFoto} setFavorita={setFavorita} /> */}
+          </MainContainer>
+        </AppContainer>
+        <ModalZoom />
+      </GradientBackground>
+    </RecoilRoot>
   )
 }
 
