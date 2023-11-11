@@ -32,7 +32,6 @@ function App() {
           <MainContainer>
             <SideBar />
             <Body />
-            {/* <Body fotos={fotos} setFoto={setFoto} setFavorita={setFavorita} /> */}
           </MainContainer>
         </AppContainer>
         <ModalZoom />

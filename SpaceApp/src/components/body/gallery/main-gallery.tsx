@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import Title from '../title'
 import MainGalleryCard from './main-gallery-card'
-import { fotos } from '../../../state/atom'
-import { useRecoilValue } from 'recoil'
+import useFotos from '../../../hooks/useFotos'
 
 const MainGalleryContainer = styled.div`
     display: flex;
@@ -20,7 +19,7 @@ const CardContainer = styled.ul`
 `
 
 export default function MainGallery() {
-    const fotosArray = useRecoilValue(fotos)
+    const fotosArray = useFotos()
 
     return (
         <MainGalleryContainer>
@@ -28,7 +27,7 @@ export default function MainGallery() {
             <CardContainer>
                 {fotosArray.map(foto => {
                     return (
-                        <MainGalleryCard foto={foto}/>
+                        <MainGalleryCard key={foto.id} foto={foto}/>
                     )
                 })}
             </CardContainer>

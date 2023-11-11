@@ -1,13 +1,7 @@
-import { useState } from 'react'
+import usePopularFotos from '../../../hooks/usePopularsFotos'
 import Title from '../title'
-import fotosJson from './fotos-populares.json'
-import styled from 'styled-components'
 
-export interface Foto {
-    alt: string
-    path: string
-    id: number
-}
+import styled from 'styled-components'
 
 const ImageContainer = styled.div`
     display: flex;
@@ -41,7 +35,7 @@ const StyledButton = styled.button`
 `
 
 export default function PopularGallery() {
-    const [fotos, setFotos] = useState<Foto[]>(fotosJson ?? [])
+    const fotos = usePopularFotos()
 
     return (
         <div>

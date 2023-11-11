@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 import { Foto } from '../../../model/Foto'
-// import { fotos } from '../../../state/atom'
-import { useSetRecoilState } from 'recoil'
-import { foto2 } from '../../../state/atom'
 import useSetFavorite from '../../../hooks/useSetFavorite'
-// import { useSetFavorite } from '../../../hooks/useSetFavorite'
+import useFotoZoom from '../../../hooks/useFotoZoom'
 
 interface MainGalleryCardProps {
     foto: Foto
@@ -78,10 +75,10 @@ const StyledImgButton = styled.img`
 `
 
 export default function MainGalleryCard({ foto }: MainGalleryCardProps) {
-    const setFotoZoom = useSetRecoilState<Foto | undefined>(foto2)
+    
+    const {setFoto} = useFotoZoom()
     const setFavorita = useSetFavorite()
-    function setFoto(foto?: Foto) { setFotoZoom(foto) }
-
+    
     return (
         <StyledFigure>
             <StyledImg src={foto.path} />
