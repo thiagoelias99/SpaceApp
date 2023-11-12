@@ -1,10 +1,6 @@
 import styled from 'styled-components'
-import tagsJson from './tags.json'
-
-interface Tag {
-    id: number
-    titulo: string
-}
+import useTags from '../../../hooks/useTags'
+import useFilter from '../../../hooks/useFilter'
 
 const StyledTagWrapper = styled.div`
     display: flex;
@@ -43,7 +39,9 @@ const StyledTag = styled.button`
     `
 
 export default function Tags() {
-    const tags: Tag[] = tagsJson
+    const tags = useTags()
+    const { setFilter } = useFilter()
+
 
     return (
         <StyledTagWrapper>
@@ -51,7 +49,7 @@ export default function Tags() {
             <TagContainer>
                 {tags.map(tag => {
                     return (
-                        <StyledTag key={tag.id}>
+                        <StyledTag key={tag.id} onClick={e => setFilter(tag)}>
                             {tag.titulo}
                         </StyledTag>
                     )

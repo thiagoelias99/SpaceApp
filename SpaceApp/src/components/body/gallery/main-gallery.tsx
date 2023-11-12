@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Title from '../title'
 import MainGalleryCard from './main-gallery-card'
-import useFotos from '../../../hooks/useFotos'
+import useFilter from '../../../hooks/useFilter'
 
 const MainGalleryContainer = styled.div`
     display: flex;
@@ -19,7 +19,8 @@ const CardContainer = styled.ul`
 `
 
 export default function MainGallery() {
-    const fotosArray = useFotos()
+    const fotosArray = useFilter().filteredFotos
+
 
     return (
         <MainGalleryContainer>
