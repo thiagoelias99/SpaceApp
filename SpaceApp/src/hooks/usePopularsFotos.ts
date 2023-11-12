@@ -1,15 +1,17 @@
-import fotosPopulares from './fotos-populares.json'
-
-export interface Foto {
-    alt: string
-    path: string
-    id: number
-}
+import { useEffect, useState } from 'react'
+import { PopularFoto } from '../model/PopularFoto'
 
 const usePopularFotos = () => {
 
-    return fotosPopulares as Foto[]
+    const [popularFotos, setPopularFotos] = useState<PopularFoto[]>([])
 
+    useEffect(() => {
+        fetch('http://localhost:3001/populars')
+            .then(response => response.json())
+            .then(data => setPopularFotos(data))
+    }, [])
+
+    return popularFotos
 }
 
 export default usePopularFotos

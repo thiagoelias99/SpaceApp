@@ -1,11 +1,11 @@
 import { atom } from "recoil"
-import fotosJson from "../fotos.json"
 import { Foto } from '../model/Foto'
 import { Tag } from '../model/Tag'
+import { selectFotos } from './selector'
 
 export const fotos = atom<Foto[]>({
   key: 'fotos',
-  default: fotosJson || []
+  default: selectFotos
 })
 
 export const foto2 = atom<Foto | undefined>({
