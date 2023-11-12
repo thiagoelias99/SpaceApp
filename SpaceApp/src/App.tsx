@@ -5,6 +5,7 @@ import Header from './components/header'
 import SideBar from './components/side-bar'
 import Body from './components/body'
 import ModalZoom from './components/ModalZoom'
+import DebugObserver from './components/debug-observer'
 
 const GradientBackground = styled.div`
   background: linear-gradient(174.61deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
@@ -25,6 +26,7 @@ const MainContainer = styled.div`
 function App() {
   return (
     <RecoilRoot>
+      <DebugObserver />
       <GradientBackground>
         <GlobalStyles />
         <AppContainer>
