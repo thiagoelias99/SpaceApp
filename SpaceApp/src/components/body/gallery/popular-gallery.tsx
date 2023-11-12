@@ -34,7 +34,7 @@ const StyledButton = styled.button`
     }
 `
 
-export default function PopularGallery() {
+function PopularGallery() {
     const fotos = usePopularFotos()
 
     return (
@@ -49,3 +49,5 @@ export default function PopularGallery() {
         </div>
     )
 }
+
+export default PopularGallery

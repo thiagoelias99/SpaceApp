@@ -111,7 +111,7 @@ export default function ModalZoom() {
                                     <StyledTitle>{foto.titulo}</StyledTitle>
                                     <StyledP>{foto.fonte}</StyledP>
                                 </CaptionContainer>
-                                <StyledButton onClick={e => setFavorita(foto.id)}>
+                                <StyledButton onClick={() => setFavorita(foto.id)}>
                                     <StyledImgButton src={foto.favorita ? "/images/favorito-ativo.png" : "/images/favorito.png"} alt="favorite" />
                                 </StyledButton>
                             </StyledFigcaption>

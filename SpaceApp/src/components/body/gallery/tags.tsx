@@ -49,7 +49,7 @@ export default function Tags() {
             <TagContainer>
                 {tags.map(tag => {
                     return (
-                        <StyledTag key={tag.id} onClick={e => setFilter(tag)}>
+                        <StyledTag key={tag.id} onClick={() => setFilter(tag)}>
                             {tag.titulo}
                         </StyledTag>
                     )

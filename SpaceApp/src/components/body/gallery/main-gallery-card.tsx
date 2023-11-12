@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Foto } from '../../../model/Foto'
 import useSetFavorite from '../../../hooks/useSetFavorite'
 import useFotoZoom from '../../../hooks/useFotoZoom'
+import { memo } from 'react'
 
 interface MainGalleryCardProps {
     foto: Foto
@@ -74,7 +75,7 @@ const StyledImgButton = styled.img`
     filter: brightness(0) invert(1);
 `
 
-export default function MainGalleryCard({ foto }: MainGalleryCardProps) {
+function MainGalleryCard({ foto }: MainGalleryCardProps) {
     
     const {setFoto} = useFotoZoom()
     const setFavorita = useSetFavorite()
@@ -88,10 +89,10 @@ export default function MainGalleryCard({ foto }: MainGalleryCardProps) {
                     <StyledP>{foto.fonte}</StyledP>
                 </CaptionContainer>
                 <div>
-                    <StyledButton onClick={e => setFavorita(foto.id)}>
+                    <StyledButton onClick={() => setFavorita(foto.id)}>
                         <StyledImgButton src={foto.favorita ? "/images/favorito-ativo.png" : "/images/favorito.png"} alt="favorite" />
                     </StyledButton>
-                    <StyledButton onClick={e => setFoto(foto)}>
+                    <StyledButton onClick={() => setFoto(foto)}>
                         <StyledImgButton src="/images/expandir.png" alt="favorite" />
                     </StyledButton>
                 </div>
@@ -99,3 +100,5 @@ export default function MainGalleryCard({ foto }: MainGalleryCardProps) {
         </StyledFigure>
     )
 }
+
+export default memo(MainGalleryCard)
